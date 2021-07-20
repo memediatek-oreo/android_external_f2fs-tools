@@ -617,14 +617,15 @@ fsck_again:
 		if (ret)
 			goto out_err;
 		break;
-	case RESIZE:
-		if (do_resize(sbi))
-			goto out_err;
-		break;
 	case SLOAD:
 		do_sload(sbi);
 		break;
 #endif
+	case RESIZE:
+		MSG(0,"Info: do_resize start\n");
+		if (do_resize(sbi))
+			goto out_err;
+		break;
 	}
 
 	f2fs_do_umount(sbi);

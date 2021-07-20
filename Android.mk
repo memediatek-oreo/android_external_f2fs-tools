@@ -116,8 +116,10 @@ include $(CLEAR_VARS)
 # The LOCAL_MODULE name is referenced by the code. Don't change it.
 LOCAL_MODULE := fsck.f2fs
 LOCAL_SRC_FILES := \
+	fsck/defrag.c \
 	fsck/dump.c \
 	fsck/fsck.c \
+	fsck/resize.c \
 	fsck/main.c \
 	fsck/mount.c \
 	lib/libf2fs.c \
@@ -134,8 +136,10 @@ include $(BUILD_EXECUTABLE)
 include $(CLEAR_VARS)
 LOCAL_MODULE := fsck.f2fs
 LOCAL_SRC_FILES := \
+	fsck/defrag.c \
 	fsck/dump.c \
 	fsck/fsck.c \
+	fsck/resize.c \
 	fsck/main.c \
 	fsck/mount.c \
 	lib/libf2fs.c \
@@ -146,5 +150,24 @@ LOCAL_CFLAGS := $(common_CFLAGS)
 LOCAL_SHARED_LIBRARIES := libsparse
 LOCAL_HOST_SHARED_LIBRARIES :=  libext2_uuid
 include $(BUILD_HOST_EXECUTABLE)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := resize.f2fs
+LOCAL_SRC_FILES := \
+	fsck/defrag.c \
+	fsck/dump.c \
+	fsck/fsck.c \
+	fsck/resize.c \
+	fsck/main.c \
+	fsck/mount.c \
+	lib/libf2fs.c \
+	lib/libf2fs_io.c \
+
+LOCAL_C_INCLUDES := $(common_C_INCLUDES)
+LOCAL_CFLAGS := $(target_CFLAGS)
+LOCAL_SHARED_LIBRARIES := libext2_uuid libsparse
+LOCAL_SYSTEM_SHARED_LIBRARIES := libc
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_EXECUTABLE)
 
 endif
